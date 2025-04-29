@@ -1,16 +1,13 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionManager {
     private static String fileName = "transactions.csv";
 
-    public static List<Transaction> loadTransactions() throws FileNotFoundException {
+    public static List<Transaction> loadTransactions() {
         List<Transaction> transactions = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -19,10 +16,43 @@ public class TransactionManager {
                     Transaction transaction = Transaction.fromCSV(line);
                     transactions.add(transaction);
                 } catch (Exception e) {
+                    System.out.println("Skipping bad line: " + line);
                 }
             }
-    } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading transactions file", e);
         }
         return transactions;
-}}
+    }
+
+    public static void saveTransaction(Transaction transaction) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            writer.write(transaction.toCSV());
+            writer.newLine();
+        } catch (IOException e) {
+            System.out.println("Error saving transaction: " + e.getMessage());
+        }
+    }
+
+    public static List<Transaction> getDeposits(List<Transaction> transactions) {
+        List<Transaction> deposits = new ArrayList<>();
+        for (Transaction t : transactions) {
+            if (t.getAmount() > 0) {
+                deposits.add(t);
+            }
+        }
+        return deposits;
+    }
+
+    public static List<Transaction> getPayments(List<Transaction> transactions) {
+        List<Transaction> payments = new ArrayList<>();
+        for (Transaction t : transactions) {
+            if (t.getAmount() < 0) {
+                payments.add(t);
+            }
+        }
+        return payments;
+    }
+
+
+}
