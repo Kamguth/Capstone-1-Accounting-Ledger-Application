@@ -10,18 +10,19 @@ import java.util.List;
 public class TransactionManager {
     private static String fileName = "transactions.csv";
 
-    public static List<Transaction> loadTransactions() {
+    public static List<Transaction> loadTransactions() throws FileNotFoundException {
         List<Transaction> transactions = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
-            while ((line = br.readLine())!= null) {
-                String[] parts = line.split("\\|");
+            while ((line = br.readLine()) != null) {
+                try {
+                    Transaction transaction = Transaction.fromCSV(line);
+                    transactions.add(transaction);
+                } catch (Exception e) {
+                }
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+    } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return transactions;
-    }
-}
+}}
