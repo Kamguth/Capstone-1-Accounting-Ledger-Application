@@ -26,6 +26,7 @@ public class AccountingApp {
                     System.out.print("Enter amount: ");
                     double depositAmount = Double.parseDouble(input.nextLine());
 
+                    //creates a new deposit and saves it to csv
                     Transaction deposit = new Transaction(LocalDateTime.now(), depositDesc, depositVendor, depositAmount);
                     TransactionManager.saveTransaction(deposit);
                     System.out.println("Deposit added,");
@@ -39,6 +40,7 @@ public class AccountingApp {
                     System.out.print("Enter amount: ");
                     double paymentAmount = Double.parseDouble(input.nextLine());
 
+                    //creates and stores a negative value since it is a payment allowing us to find all payments
                     Transaction payment = new Transaction(LocalDateTime.now(), paymentDesc, paymentVendor, -Math.abs(paymentAmount));
                     TransactionManager.saveTransaction(payment);
                     System.out.println("Payment added.");
