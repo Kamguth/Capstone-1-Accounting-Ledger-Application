@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionManager {
-    private static String fileName = "transactions.csv";
+    private static String fileName = "src/main/resources/transactions.csv";
 
     public static List<Transaction> loadTransactions() {
         List<Transaction> transactions = new ArrayList<>();

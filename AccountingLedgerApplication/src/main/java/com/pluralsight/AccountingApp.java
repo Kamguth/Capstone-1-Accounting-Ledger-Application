@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class AccountingApp {
@@ -14,6 +15,21 @@ public class AccountingApp {
             System.out.println("X) Exit");
             System.out.print("Enter your choice: ");
             String choice = input.nextLine().toUpperCase();
+
+            switch (choice) {
+                case "D":
+                    System.out.print("Enter description: ");
+                    String depositDesc = input.nextLine();
+                    System.out.print("Enter vendor: ");
+                    String depositVendor = input.nextLine();
+                    System.out.print("Enter amount: ");
+                    double depositAmount = Double.parseDouble(input.nextLine());
+
+                    Transaction deposit = new Transaction(LocalDateTime.now(), depositDesc, depositVendor, depositAmount);
+                    TransactionManager.saveTransaction(deposit);
+                    System.out.println("Deposit added,");
+                    break;
+            }
         }
     }
 }
