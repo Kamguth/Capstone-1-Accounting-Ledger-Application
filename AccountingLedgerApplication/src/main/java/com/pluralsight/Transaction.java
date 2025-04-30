@@ -53,7 +53,6 @@ public class Transaction {
         return amount;
     }
 
-    // Print-friendly version
     @Override
     public String toString() {
         DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");

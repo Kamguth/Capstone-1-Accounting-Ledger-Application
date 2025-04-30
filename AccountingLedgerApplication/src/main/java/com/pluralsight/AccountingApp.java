@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Scanner;
 
 public class AccountingApp {
@@ -29,6 +30,29 @@ public class AccountingApp {
                     TransactionManager.saveTransaction(deposit);
                     System.out.println("Deposit added,");
                     break;
+
+                case "P":
+                    System.out.print("Enter description: ");
+                    String paymentDesc = input.nextLine();
+                    System.out.print("Enter vendor: ");
+                    String paymentVendor = input.nextLine();
+                    System.out.print("Enter amount: ");
+                    double paymentAmount = Double.parseDouble(input.nextLine());
+
+                    Transaction payment = new Transaction(LocalDateTime.now(), paymentDesc, paymentVendor, -Math.abs(paymentAmount));
+                    TransactionManager.saveTransaction(payment);
+                    System.out.println("Payment added.");
+                    break;
+
+                case "L":
+                    List<Transaction> transactions = TransactionManager.loadTransactions();
+                    Ledger.displayLedgerScreen(transactions);
+                    break;
+                case "X":
+                    System.out.println("Exiting....");
+                    return;
+                default:
+                    System.out.println("\n------Please choose a valid option------");
             }
         }
     }

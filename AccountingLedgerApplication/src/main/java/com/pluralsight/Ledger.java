@@ -17,8 +17,35 @@ public class Ledger {
             String choice = input.nextLine().toUpperCase();
 
             switch (choice) {
+                case "A":
+                    displayTransactions(transactions);
+                    break;
+
+                case "D":
+                    List<Transaction> deposits = TransactionManager.getDeposits(transactions);
+                    displayTransactions(deposits);
+                    break;
+
+                case "P":
+                    List<Transaction> payments = TransactionManager.getPayments(transactions);
+                    displayTransactions(payments);
+                    break;
+
+                case "R":
+                    Reports.displayReportMenu(transactions);
+                    break;
+
+                case "H":
+                    return;
+
+                default:
+                    System.out.println("Please select a valid option");
+
 
             }
         }
+    }
+    private static void displayTransactions(List<Transaction> transactions) {
+
     }
 }
