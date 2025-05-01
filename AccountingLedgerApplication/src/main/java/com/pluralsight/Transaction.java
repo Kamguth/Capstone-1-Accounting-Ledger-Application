@@ -57,6 +57,6 @@ public class Transaction {
     public String toString() {
         DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return date.format(timestamp) + "|" + time.format(timestamp) + "|" + description + "|" + vendor + "|" + amount;
+        return date.format(timestamp) + "|" + time.format(timestamp) + "|" + description + "|" + vendor + "|" + String.format("%.2f", amount);
     }
 }

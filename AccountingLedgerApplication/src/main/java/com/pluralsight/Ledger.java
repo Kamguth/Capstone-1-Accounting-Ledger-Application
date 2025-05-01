@@ -45,7 +45,12 @@ public class Ledger {
             }
         }
     }
-    private static void displayTransactions(List<Transaction> transactions) {
 
+    private static void displayTransactions(List<Transaction> transactions) {
+        System.out.println("\nDate       | Time     | Description        | Vendor           | Amount");
+        System.out.println("--------------------------------------------------------------------------");
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction.toString());
+        }
     }
 }

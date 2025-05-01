@@ -20,7 +20,31 @@ public class Reports {
 
             switch (choice) {
                 case "1":
+                    break;
 
+                case "2":
+                    break;
+
+                case "3":
+                    break;
+
+                case "4":
+                    break;
+
+                case "5":
+                    System.out.print("Enter vendor name to search: ");
+                    System.out.print("Enter vendor name to search: ");
+                    String vendorName = input.nextLine().toLowerCase();
+                    for (Transaction t : transactions) {
+                        if (t.getVendor().toLowerCase().contains(vendorName)) {
+                            System.out.println(t);
+                        }else
+                            System.out.println("No vendor matching name provided.");
+                    }
+                    break;
+
+                case "0":
+                    return;
             }
         }
 
