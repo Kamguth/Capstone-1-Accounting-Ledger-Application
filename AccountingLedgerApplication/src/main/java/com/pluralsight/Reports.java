@@ -52,9 +52,9 @@ public class Reports {
 
                 case "4":
                     //last year = current year minus 1
-                    int lastYear = LocalDate.now().getYear() -1;
+                    int lastYear = LocalDate.now().getYear() - 1;
                     List<Transaction> previousYear = new ArrayList<>();
-                    for (Transaction t :transactions) {
+                    for (Transaction t : transactions) {
                         if (t.getTimestamp().getYear() == lastYear) {
                             previousYear.add(t);
                         }
@@ -67,7 +67,8 @@ public class Reports {
                     System.out.print("Enter vendor name to search: ");
                     String vendorName = input.nextLine().toLowerCase();
                     for (Transaction t : transactions) {
-                        if (t.getVendor().toLowerCase().contains(vendorName)) {
+                        if (t.getVendor().toLowerCase().contains(vendorName))//compares chars of a string
+                        {
                             System.out.println(t);
                         }
                     }

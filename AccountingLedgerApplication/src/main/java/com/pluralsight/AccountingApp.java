@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
-public class AccountingApp {
+public class AccountingApp {//Home screen
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
